@@ -1,0 +1,39 @@
+/* W4: extends existing tokens and components without changing W1–W3. */
+.w4-page { min-width: 0; }
+.w4-page h2 { font-size: 1.25rem; overflow-wrap: anywhere; }
+.w4-page h3 { font-size: 1.05rem; }
+.w4-toolbar { padding: 18px; display: flex; flex-wrap: wrap; gap: 14px; align-items: end; }
+.w4-toolbar .field { flex: 1 1 240px; }
+.w4-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 20px; }
+.team-identity { padding: 24px; display: grid; gap: 20px; overflow: hidden; position: relative; }
+.team-identity.banner-aurora { background: radial-gradient(ellipse at top right, color-mix(in srgb, var(--accent) 12%, transparent), transparent 65%), var(--surface); }
+.team-identity.banner-grid { background: linear-gradient(90deg, var(--border) 1px, transparent 1px), linear-gradient(var(--border) 1px, transparent 1px), var(--surface); background-size: 60px 60px; }
+.team-heading { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.team-heading > div:last-child { display: grid; gap: 8px; flex: 1 1 180px; min-width: 0; }
+.team-logo { width: 96px; height: 96px; flex: 0 0 96px; border: 3px solid; position: relative; overflow: hidden; display: grid; place-items: center; border-radius: 20px; }
+.team-logo.logo-circle { border-radius: 50%; }
+.team-logo.logo-shield { border-radius: 15px 15px 45px 45px; }
+.team-logo-symbol { font-size: 64px; line-height: 1; }
+.team-logo strong { position: absolute; bottom: 10px; background: #0f1923; color: #ece8e1; padding: 1px 7px; border-radius: 6px; font-size: .8rem; letter-spacing: .08em; }
+.team-logo img { width: 100%; height: 100%; object-fit: cover; }
+.team-roster { display: grid; list-style: none; padding: 0; margin: 0; gap: 12px; }
+.team-roster.members-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+.team-roster li { display: flex; align-items: center; gap: 10px; padding: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; min-width: 0; overflow-wrap: anywhere; }
+.team-roster li > div { display: grid; }
+.layout-spotlight .team-heading { flex-direction: column; text-align: center; }
+.layout-spotlight .team-heading > div:last-child { flex-basis: auto; }
+.layout-spotlight .team-heading .chip-row { justify-content: center; }
+.layout-spotlight .team-roster { order: -1; }
+.w4-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+.w4-list > li { display: flex; gap: 16px; flex-wrap: wrap; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: 16px; overflow-wrap: anywhere; }
+.w4-list > li > div { display: grid; gap: 8px; }
+.w4-subform { display: grid; gap: 18px; padding-top: 18px; border-top: 1px solid var(--border); }
+.w4-page .form-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr)); }
+.w4-page input[type='color'] { min-height: 48px; }
+.w4-page .button { white-space: normal; }
+.w4-page .chip-toggle { min-height: 44px; }
+@media (max-width: 767px) {
+  .w4-page .form-card, .team-identity { padding: 18px; }
+  .w4-page nav .button { flex: 1 1 125px; }
+  .team-heading { gap: 14px; }
+}
