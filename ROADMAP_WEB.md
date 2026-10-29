@@ -335,7 +335,15 @@ Se conservan las 74 pruebas previas y se añaden **14 W4.5**: rutas legales dire
 
 ### Despliegue
 
-Pendiente de confirmación tras el push de esta etapa.
+Push a `main` en `ewann777/TeamValWeb`: commit `48118d5` (*feat: add privacy policy, terms and Riot disclaimer footer (W4.5)*), `8a8554e..48118d5  main -> main`.
+
+Comprobado en producción tras el despliegue de Vercel:
+
+- `https://team-val-web.vercel.app/privacidad` → **200**
+- `https://team-val-web.vercel.app/terminos` → **200**
+- `https://team-val-web.vercel.app/app/scrims` → **200** (rutas SPA siguen funcionando)
+- `https://team-val-web.vercel.app/riot.txt` → **200** con contenido oficial exacto, sin modificar
+- El HTML servido referencia el bundle nuevo `index-C8LpIqfU.js` / `index-DUfCcZHn.css`, y dicho bundle contiene «Política de privacidad», «Términos y condiciones», el aviso en español y el boilerplate oficial de Riot.
 
 ### Pendientes legales (marcados en las propias páginas)
 
