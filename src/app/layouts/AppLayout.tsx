@@ -40,7 +40,20 @@ export function AppLayout() {
         {warning && <div role="status" className="notice mb-6"><Icon name="info" /><p>{warning}</p></div>}
         <div key={pathname.startsWith('/app/scrims') ? '/app/scrims' : pathname} className="page-enter"><Outlet /></div>
       </main>
-      <footer className="app-footer"><span>TeamVal <span className="footer-dot">·</span> Hecho para jugar en equipo.</span><span>Proyecto independiente de Riot Games.</span></footer>
+      <footer className="app-footer">
+        <div className="footer-row">
+          <span>TeamVal <span className="footer-dot">·</span> Hecho para jugar en equipo.</span>
+          <nav aria-label="Enlaces legales" className="footer-links">
+            <Link to="/privacidad">Privacidad</Link>
+            <span className="footer-dot" aria-hidden="true">·</span>
+            <Link to="/terminos">Términos</Link>
+          </nav>
+        </div>
+        <div className="footer-legal">
+          <p className="footer-disclaimer">TeamVal es un proyecto independiente y no está afiliado, patrocinado ni respaldado por Riot Games. VALORANT y sus marcas pertenecen a Riot Games.</p>
+          <p className="footer-disclaimer footer-disclaimer-official">TeamVal isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties. Riot Games, and all associated properties are trademarks or registered trademarks of Riot Games, Inc.</p>
+        </div>
+      </footer>
     </div>
     <nav className="mobile-nav" aria-label="Navegación móvil">
       {destinations.map((item) => <NavLink end={item.to === '/app'} key={item.to} to={item.to}><span className="mobile-icon"><Icon name={item.icon} /></span><span>{item.label}</span></NavLink>)}

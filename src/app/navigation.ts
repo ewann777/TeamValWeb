@@ -13,6 +13,8 @@ export function pageTitle(pathname: string): string {
   const destination = destinations.find((item) => item.to === pathname)
   if (destination) return destination.label
   if (pathname === '/app/apariencia') return 'Apariencia'
+  if (pathname === '/privacidad') return 'Privacidad'
+  if (pathname === '/terminos') return 'Términos'
   if (pathname === '/app/perfil/editar') return 'Editar perfil'
   if (pathname.startsWith('/app/jugadores/')) return 'Perfil público'
   if (pathname === '/app/buscar-equipo/crear') return 'Crear publicación'

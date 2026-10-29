@@ -1,10 +1,10 @@
 # TeamVal Web — Roadmap por etapas
 
-Actualizado: **28/10/2026**.
+Actualizado: **29/10/2026**.
 
 ## Estado y regla de trabajo
 
-**W1–W4 implementadas y verificadas. Diseño de W3 aprobado; W4 pendiente de revisión visual del usuario.** W4 incorpora equipos, logos, plantilla, scrims y reputación persistentes de demostración. W5 permanece pendiente de autorización.
+**W1–W4 y W4.5 implementadas y verificadas.** Diseño de W3 aprobado; W4 pendiente de revisión visual. W4.5 añade páginas legales (`/privacidad`, `/terminos`), pie con aviso de Riot y enlaces compartidos. W5 permanece pendiente de autorización.
 
 Antes de cada etapa, consultar este roadmap, [ARCHITECTURE_WEB.md](ARCHITECTURE_WEB.md) y [ANALISIS_ANDROID_WEB.md](ANALISIS_ANDROID_WEB.md). Implementar únicamente la etapa autorizada, verificar, registrar avances/pendientes y detenerse. El proyecto Android se mantiene de solo lectura.
 
@@ -14,6 +14,7 @@ Antes de cada etapa, consultar este roadmap, [ARCHITECTURE_WEB.md](ARCHITECTURE_
 | W2 — Identidad visual y navegación | Implementada y verificada; revisión visual del usuario pendiente | W1 |
 | W3 — Buscar equipo y perfiles | Completada; diseño visual aprobado por el usuario | W2 |
 | W4 — Equipos, scrims y comunidad | Implementada y verificada; revisión visual pendiente | W3 |
+| W4.5 — Preparación legal para Riot | Implementada y verificada; revisión visual pendiente | W4 |
 | W5 — Tienda, monedas e inventario | Pendiente | W3 + W4 para cosméticos de equipo |
 | W6 — Backend y persistencia compartida | Pendiente de revisión de arquitectura | W3–W5 |
 | W7 — Sitio público y preparación Riot | Pendiente | Funciones reales y datos legales/contacto |
@@ -109,7 +110,7 @@ Aceptación: dos cuentas distintas pueden colaborar y no acceder a datos privado
 - [ ] Capturas reales Android disponibles/autorizadas; indicar demos y arte provisional.
 - [ ] Privacidad/términos fieles al almacenamiento activo, responsable y contacto reales.
 - [ ] Aviso de independencia, inventario de recursos propios/licencias y revisión de políticas oficiales vigentes.
-- [ ] Preparar ruta estática `riot.txt`; insertar exclusivamente contenido oficial cuando se proporcione.
+- [x] Preparar ruta estática `riot.txt`; insertar exclusivamente contenido oficial cuando se proporcione (implementado y verificado; contenido oficial facilitado por Riot). *Resto de W7 pendiente.*
 - [ ] Documentar arquitectura RSO futura y estadísticas con consentimiento/procedencia, sin activarlas.
 - [ ] Preparar build, prerender público si procede, fallback SPA y cabeceras para Cloudflare Pages.
 
@@ -293,3 +294,56 @@ Recorrido recomendado:
 5. Consultar ORBIT FIVE para ver reputación recibida; recargar para comprobar persistencia. Reiniciar W4 si se desea volver al fixture.
 
 **W4 funcional local completada y verificada; pendiente aprobación visual.** No quedan funcionalidades importantes del encargo W4 sin implementar. Backend multiusuario, moderación real, autenticación, resultados oficiales e integración Riot quedan para etapas futuras. No se comenzó W5, no se modificó Tienda ni Android, y no se hicieron commits, pushes ni despliegues. Detenerse aquí hasta nueva autorización.
+
+*(Nota: con posterioridad a ese punto de parada, el trabajo se consolidó en el repositorio `ewann777/TeamValWeb` y se publicó en Vercel; ver «Despliegue» más abajo.)*
+
+## Registro de W4.5 — 29/10/2026
+
+Preparación legal para la revisión de Riot Games **sin cambiar el diseño aprobado**. Contexto declarado por el usuario: web publicada en Vercel, dominio verificado y solicitud de API en estado *Pending Review* (no se afirma aprobación en ningún punto). W5 no se inició.
+
+### Comportamiento real revisado antes de redactar
+
+- **Almacenamiento local verificado en el código:** `localStorage` `teamval.appearance.v1` (apariencia) y `teamval.community.demo.v1` (perfiles, publicaciones y solicitudes W3); `IndexedDB` `teamval.teams.demo.v1` (equipos, logos, scrims y valoraciones W4); `sessionStorage` `teamval.w4.actor` (jugador demo por pestaña); `BroadcastChannel` `teamval.teams.demo.v1` (sincronización entre pestañas, sin persistencia).
+- **Sin cookies, sin analítica, sin peticiones de red** (`fetch` ausente en `src/`) y **fuentes autoalojadas** en `/fonts` (sin Google Fonts ni CDNs).
+- **Botones de gestión de datos reales:** «Reiniciar datos de demostración» en Perfil y «Reiniciar demo W4» en Scrims.
+- **Único tercero:** Vercel (alojamiento), según `vercel.json` y el despliegue.
+
+### Implementación entregada
+
+- **`/privacidad`** (`src/features/legal/PrivacyPage.tsx`): operador del proyecto, datos del perfil, claves reales de almacenamiento, naturaleza de demostración de publicaciones/equipos/scrims, ausencia de backend y de integración Riot (solicitud *Pending Review*), futura integración RSO solo con autorización del jugador, gestión/eliminación de datos y distinción TeamVal/Vercel. Cierre con sección «Información pendiente de confirmar».
+- **`/terminos`** (`src/features/legal/TermsPage.tsx`): uso adecuado, publicaciones y conducta, prohibición de acoso/toxicidad/suplantación, contenido y logos subidos por el usuario, scrims y resultados no oficiales, responsabilidad del usuario, funcionalidades de demostración y **TeamVal Coins como moneda virtual sin valor monetario real, sin pagos activos y sin sistema de monedas implantado**.
+- **Pie de página compartido** (`AppLayout`): enlaces «Privacidad» y «Términos» en todas las secciones, aviso en español solicitado por el usuario y **boilerplate oficial de Riot Games en inglés**, verificado en [Políticas generales de Riot](https://developer.riotgames.com/policies/general) («You must post the following legal boilerplate…», última actualización 29/05/2025): *«TeamVal isn't endorsed by Riot Games…»*. Es una formulación adicional obligatoria detectada en la revisión exigida por el encargo; se añadió además en `/terminos`.
+- **Rutas públicas** dentro del shell existente (sin login, que no existe en el proyecto), títulos de cabecera en `navigation.ts` y estilos nuevos mínimos en `app.css` (`footer-row`, `footer-links`, `footer-disclaimer`, `legal-card`, `legal-list`, `legal-official`) sobre los tokens ya aprobados.
+
+### Decisiones y límites
+
+- Nada de correos, teléfonos, cifrado, backups ni medidas de seguridad inventados: todo lo no existente aparece marcado como **pendiente de confirmar** en ambas páginas.
+- Requisitos de Riot para apps VALORANT con RSO (opt-in del jugador y aviso de que vincular la cuenta hace públicos los datos) documentados como **pendiente de implementación futura**; no se simula RSO.
+- `public/riot.txt` no se modificó y su contenido se fija con una prueba.
+- Android no se tocó; W3 y W4 conservan sus 74 pruebas sin cambios.
+
+### Verificación realmente ejecutada
+
+| Comando | Resultado final |
+| --- | --- |
+| `npm run typecheck` | Correcto, sin errores |
+| `npm run lint` | Correcto, cero avisos |
+| `npm run build` | Correcto, 79 módulos; JS 417,25 kB / 123,10 kB gzip; CSS 54,96 kB / 11,29 kB gzip |
+| `npm run test:e2e` | **88/88 correctas**, Chromium, dos workers, 56,3 s |
+
+Se conservan las 74 pruebas previas y se añaden **14 W4.5**: rutas legales directas con recarga y sin errores JS, pie con enlaces y ambos avisos en ocho secciones, navegación cruzada legal↔app, enlace alcanzable por teclado con foco visible y área de 44 px, contenido real de Privacidad (las cuatro claves, sin `mailto:` y con `vercel.com/privacy` como único enlace externo), cobertura completa de Términos, ambos avisos de Riot en pie y en Términos, páginas públicas sin almacenamiento, `riot.txt` intacto, responsive 320/768/1440 sin desbordamiento y **axe sin infracciones en claro y oscuro**. Se revisaron capturas de escritorio y móvil de ambas páginas. Fallos detectados y corregidos durante la etapa: mayúsculas en una aserción y una aserción ubicada en la página equivocada (el estado *Pending Review* se describe en Privacidad, no en Términos).
+
+### Despliegue
+
+Pendiente de confirmación tras el push de esta etapa.
+
+### Pendientes legales (marcados en las propias páginas)
+
+1. Identidad y datos de contacto del responsable (no hay correo oficial).
+2. Legislación aplicable y jurisdicción.
+3. Revisión jurídica profesional de ambos textos.
+4. Condiciones para personas menores de edad.
+5. Plazo de conservación de registros del alojamiento (Vercel).
+6. Ámbitos de datos de la futura integración RSO y aviso de datos públicos asociado al opt-in.
+7. Moderación de contenido y de imágenes (requiere backend).
+8. Resto de W7 (presentación pública, inventario de recursos y licencias, cabeceras y prerender).

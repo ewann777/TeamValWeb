@@ -86,6 +86,20 @@ button, a, input { transition: background-color 180ms, border-color 180ms, box-s
 .main-content { padding: 36px 44px; width: 100%; max-width: 1200px; margin: 0 auto; flex: 1; outline: none; }
 .app-footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding: 24px 44px; color: var(--muted); font-size: .65rem; border-top: 1px solid var(--border); }
 .footer-dot { color: var(--accent-text); margin: 0 5px; }
+.footer-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; width: 100%; }
+.footer-links { display: inline-flex; align-items: center; gap: 12px; }
+.footer-links a { display: inline-flex; align-items: center; min-height: 44px; padding-inline: 2px; color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+.footer-links a:hover, .footer-links a:focus-visible { color: var(--accent-text); }
+.footer-legal { display: grid; gap: 6px; width: 100%; }
+.footer-disclaimer { margin: 0; max-width: 900px; line-height: 1.55; }
+.footer-disclaimer-official { color: color-mix(in srgb, var(--muted) 82%, transparent); font-size: .6rem; }
+.legal-card { gap: 16px; }
+.legal-card p { margin: 0; line-height: 1.65; }
+.legal-card h2 { font-size: 1.15rem; }
+.legal-list { margin: 0; padding-left: 1.2rem; display: grid; gap: 8px; line-height: 1.6; }
+.legal-list li::marker { color: var(--accent-text); }
+.legal-official { color: var(--muted); font-size: .84rem; border-left: 2px solid var(--border); padding-left: 14px; }
+.legal-card .notice { align-items: center; }
 .mobile-nav { display: none; }
 .skip-link { position: fixed; top: -100px; left: 20px; z-index: 100; padding: 12px 20px; background: var(--accent); color: var(--on-accent); border-radius: 10px; }
 .skip-link:focus { top: 16px; }

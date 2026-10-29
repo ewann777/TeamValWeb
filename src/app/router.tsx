@@ -24,6 +24,8 @@ import { MembershipsPage } from '../features/teams/MembershipsPage'
 import { ScrimsPage } from '../features/scrims/ScrimsPage'
 import { CreateScrimPage } from '../features/scrims/CreateScrimPage'
 import { ScrimAgendaPage } from '../features/scrims/ScrimAgendaPage'
+import { PrivacyPage } from '../features/legal/PrivacyPage'
+import { TermsPage } from '../features/legal/TermsPage'
 
 const communityRepository = createBrowserCommunityRepository()
 const teamsRepository = new LocalTeamsRepository()
@@ -52,6 +54,8 @@ export function AppRouter() {
       <Route path="/app/perfil/editar" element={<EditProfilePage />} />
       <Route path="/app/jugadores/:id" element={<PublicProfilePage />} />
       <Route path="/app/apariencia" element={<AppearancePage />} />
+      <Route path="/privacidad" element={<PrivacyPage />} />
+      <Route path="/terminos" element={<TermsPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Route>
   </Routes></CommunityProvider></AppearanceProvider></BrowserRouter>
